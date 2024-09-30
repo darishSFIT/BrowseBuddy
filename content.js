@@ -8,10 +8,17 @@ const displayScore = (score) => {
 // Get the current URL
 const currentUrl = window.location.href;
 
-// Retrieve score from local storage
+// Retrieve score from chrome storage
 chrome.storage.local.get(currentUrl, (data) => {
     if (data[currentUrl]) {
         displayScore(data[currentUrl]);
+    }
+});
+
+// Listen for updates to the score
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === 'updateScore') {
+        displayScore(request.score); // Update badge with new score
     }
 });
 

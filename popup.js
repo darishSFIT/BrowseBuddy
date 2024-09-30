@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Show the URL in the popup
         document.getElementById('safety-status').textContent = `Current URL: ${tabUrl}`;
         
-        // Get the stored safety score from localStorage
-        const savedScore = localStorage.getItem(tabUrl);
-        if (savedScore) {
-            document.getElementById('score').value = savedScore;  // Display the saved score in the input
-            document.getElementById('safety-status').textContent = `Safety Score: ${savedScore} (URL: ${tabUrl})`;
-        } else {
-            document.getElementById('safety-status').textContent = `No safety score submitted for: ${tabUrl}`;
-        }
+        // Get the stored safety score from chrome.storage
+        chrome.storage.local.get(tabUrl, (data) => {
+            const savedScore = data[tabUrl];
+            if (savedScore) {
+                document.getElementById('score').value = savedScore;  // Display the saved score in the input
+                document.getElementById('safety-status').textContent = `Safety Score: ${savedScore} (URL: ${tabUrl})`;
+            } else {
+                document.getElementById('safety-status').textContent = `No safety score submitted for: ${tabUrl}`;
+            }
+        });
     });
 
     // Submit safety score
@@ -24,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
             chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 const tabUrl = tabs[0].url;
                 
-                // Save the score for the current page in local storage
-                localStorage.setItem(tabUrl, score);
-                
-                // Notify the content script to update the score
-                chrome.tabs.sendMessage(tabs[0].id, { action: 'updateScore', score: score });
-                
-                // Update the popup to show the saved score
-                document.getElementById('safety-status').textContent = `Safety Score Submitted: ${score} (URL: ${tabUrl})`;
+                // Save the score for the current page in chrome storage
+                chrome.storage.local.set({ [tabUrl]: score }, () => {
+                    // Notify the content script to update the score
+                    chrome.tabs.sendMessage(tabs[0].id, { action: 'updateScore', score: score });
+                    
+                    // Update the popup to show the saved score
+                    document.getElementById('safety-status').textContent = `Safety Score Submitted: ${score} (URL: ${tabUrl})`;
+                });
             });
         } else {
             alert('Please enter a valid score between 0 and 100.');
@@ -120,3 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
 //       });
 //   });
 // }
+
+
+

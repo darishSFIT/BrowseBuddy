@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto mt-5">
+        <h1 class="text-2xl font-bold">Content Summarizer</h1>
+        <textarea id="inputText" class="w-full h-32 border rounded mt-2" placeholder="Enter your paragraph here..."></textarea>
+        <button id="summarizeButton" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Summarize</button>
+        <h2 class="mt-4 text-xl">Summary:</h2>
+        <div id="summaryOutput" class="border rounded p-2"></div>
+    </div>
+    <script src="summarizer.js"></script>
+</body>
+</html>

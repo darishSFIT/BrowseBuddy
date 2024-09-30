@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Tool</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #screenshotArea {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .secondary {
+            background-color: #6c757d;
+        }
+        .secondary:hover {
+            background-color: #5a6268;
+        }
+        .success {
+            background-color: #28a745;
+        }
+        .success:hover {
+            background-color: #218838;
+        }
+        .warning {
+            background-color: #ffc107;
+        }
+        .warning:hover {
+            background-color: #e0a800;
+        }
+        #screenshotContainer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Screenshot Tool</h1>
+    <div id="screenshotArea">
+        <p>This is the area to capture for a selective screenshot.</p>
+    </div>
+    <button id="selectiveScreenshotBtn">Take Selective Screenshot</button>
+    <button id="fullScreenshotBtn">Take Full Window Screenshot</button>
+
+    <h2>Captured Screenshot:</h2>
+    <div id="screenshotContainer"></div>
+    <button id="retakeScreenshotBtn" class="secondary">Retake</button>
+    <button id="copyScreenshotBtn" class="success">Copy</button>
+    <button id="downloadScreenshotBtn" class="warning">Download</button>
+    <script src="screenshot.js"></script>
+</body>
+</html>

@@ -4,8 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdFree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        .button-on {
+            background-color: #10b981;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .button-on:hover {
+            background-color: #059669;
+        }
+        .button-off {
+            background-color: #ef4444;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .button-off:hover {
+            background-color: #dc2626;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #374151;
+        }
+        .status span {
+            font-weight: bold;
+        }
+    </style>
+    
 </head>
 <body>
-    <p>AdBlock</p>
+    <h1>AdBlocker</h1>
+    <button id="toggleButton" class="button-on">Enable AdBlocker</button>
+    <div class="status">
+        <p>Status: <span id="adblockStatus">Disabled</span></p>
+    </div>
+    <script src="adblock.js"></script>
 </body>
 </html>

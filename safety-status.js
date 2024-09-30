@@ -40,4 +40,16 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please enter a valid score between 0 and 100.');
         }
     });
+
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.action === "getSafetyStatus") {
+            chrome.storage.local.get(null, (data) => {
+                for (const url in data) {
+                    displaySafetyStatus(url, data[url]);
+                }
+                sendResponse({ status: "success" });
+            });
+            return true; // Keep the message channel open for sendResponse
+        }
+    });
 });
