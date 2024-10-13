@@ -1,18 +1,19 @@
-const bookmarks = [];
+const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || []; // Load bookmarks from localStorage
 
 document.getElementById('addBookmark').addEventListener('click', function() {
     const name = document.getElementById('bookmarkName').value;
     const url = document.getElementById('bookmarkUrl').value;
     const group = document.getElementById('bookmarkGroup').value;
 
-    if (name && url) {
+    if (name && url && group) { // Ensure group is also checked
         bookmarks.push({ name, url, group });
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks)); // Save bookmarks to localStorage
         document.getElementById('bookmarkName').value = '';
         document.getElementById('bookmarkUrl').value = '';
         document.getElementById('bookmarkGroup').value = '';
         alert('Bookmark added!');
     } else {
-        alert('Please enter both name and URL.');
+        alert('Please enter name, URL, and category.');
     }
 });
 

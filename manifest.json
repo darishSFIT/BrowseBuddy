@@ -6,32 +6,35 @@
   "permissions": [
         "declarativeNetRequest",
         "storage",
-        "activeTab"
-    ],
+        "activeTab",
+        "scripting",
+        "bookmarks",
+        "tabs",
+        "tabGroups"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "popup.html",
     "default_icon": "icon.png"
   },
+ 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js",
             "popup.js",
-            "index.js",
-            "bookmark-organizer.js",
-            "safety-status.js", 
-            "adblock.js",
-            "translator.js",
-            "summarizer.js",
-            "productivity-tracker.js",
-            "screenshot.js",
-            "html2canvas.js",
-            "tab-manager.js",
-            "submit-score.js",
-            "html2canvas.js"]
+            "adblocker/adblock.js",
+            "bookmark-organizer/bookmark-organizer.js",
+            "productivity-tracker/productivity-tracker.js",
+            "safety-status/safety-badge.js",
+            "safety-status/safety-status.js",
+            "screenshot/html2canvas.js",
+            "screenshot/screenshot.js",
+            "tab-manager/tab-manager.js",
+            "translate-summarize/popup.js",
+            "translate-summarize/background.js"]
     }
   ],
   "web_accessible_resources": [
@@ -47,15 +50,26 @@
           "screenshot.html",
           "submit-score.html",           
           "index.html", 
+          "translate/popup.html",
           "safety-status.js", 
           "content.js", 
           "background.js"],
       "matches": ["<all_urls>"]
     }
   ],
-  "options_page": "index.html",
+  "options_page": "popup.html",
 
   "host_permissions": [
         "*://*/*"
-    ]
+    ],
+    "commands": {
+      "_execute_action": {
+        "suggested_key": {
+          "default": "Alt+Shift+U",
+          "linux": "Ctrl+Shift+U",
+          "windows": "Alt+Shift+U",
+          "mac": "Ctrl+Shift+U"
+        }
+      }
+    }
 }

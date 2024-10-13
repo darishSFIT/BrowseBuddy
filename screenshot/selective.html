@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selective ss</title>
+    <style>
+        #selection {
+            position: absolute;
+            background: #e0eaf1;
+            border: 1px solid #0c65a5;
+        }
+
+        #selection.complete {
+            background: #E0F1E4;
+            border-color: #0CA50E;
+        }
+    </style>
+    <script src="html2canvas.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="selective.js"></script>
+</head>
+<body>
+    <strong>Start coordinates:</strong><span id="start"></span>
+    <strong>End coordinates:</strong><span id="end"></span>
+
+    <div id="selection"></div>
+</body>
+</html>
