@@ -29,12 +29,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Submit safety score
-    document.getElementById('submitScore').addEventListener('click', function () {
-        const score = document.getElementById('scoreInput').value;
+    document.getElementById('submitScore').addEventListener('click', () => {
+        const score = parseInt(document.getElementById('scoreInput').value);
+        const url = window.location.href; // Get the current URL
+
         if (score >= 0 && score <= 100) {
-            // Save the score for the current page in local storage
-            chrome.storage.local.set({ [currentUrl]: score }, () => {
-                displaySafetyStatus(currentUrl, score); // Update display
+            chrome.runtime.sendMessage({ action: 'submitSafetyScore', url, score }, (response) => {
+                if (response.status === "success") {
+                    alert(response.message);
+                } else {
+                    alert('Error submitting score.');
+                }
             });
         } else {
             alert('Please enter a valid score between 0 and 100.');

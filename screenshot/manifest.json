@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Selective Screenshot with Options",
+    "version": "1.0",
+    "description": "Take selective screenshots with options to retake, copy, or download",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "clipboardWrite",
+      "downloads"
+    ],
+    "action": {
+      "default_title": "Take Screenshot"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "css": ["styles.css"]
+      }
+    ]
+  }

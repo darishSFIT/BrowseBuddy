@@ -8,10 +8,10 @@ chrome.runtime.onInstalled.addListener(() => {
 // Handle messages from content or popup scripts
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "submitSafetyScore") {
-        submitSafetyScore(request.url, request.score, request.user).then(response => {
+        const { url, score } = request;
+        safetyScores[url] = score; // Store the score in the local object
+        chrome.storage.local.set({ [url]: score }, () => {
             sendResponse({ status: "success", message: "Score added successfully!" });
-        }).catch(error => {
-            sendResponse({ status: "error", message: error.message });
         });
         return true; // Keep the message channel open for sendResponse
     } else if (request.action === "getSafetyScore") {
@@ -29,10 +29,7 @@ async function fetchSafetyScore(url) {
     try {
         const response = await fetch(`https://browsebuddy.onrender.com/api/check?url=${url}`);
         
-        // Check if the response is OK (status in the range 200-299)
         if (!response.ok) {
-            const text = await response.text(); // Get the response text
-            console.error(`Error fetching safety score: ${text}`);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
@@ -131,45 +128,45 @@ async function checkSafety(url) {
     // Additional logic...
 }
 
-const VIRUSTOTAL_API_KEY = "60e36d5ffd98adaed48b99828f8689163bc43c75bc96793036b49bef4f18f17c";
+// const VIRUSTOTAL_API_KEY = "60e36d5ffd98adaed48b99828f8689163bc43c75bc96793036b49bef4f18f17c";
 
-function checkWithVirusTotal(url) {
-    const requestUrl = `https://www.virustotal.com/api/v3/urls`;
+// function checkWithVirusTotal(url) {
+//     const requestUrl = `https://www.virustotal.com/api/v3/urls`;
 
-    // Encode the URL in base64
-    const urlEncoded = btoa(url);
+//     // Encode the URL in base64
+//     const urlEncoded = btoa(url);
 
-    return fetch(`${requestUrl}/${urlEncoded}`, {
-        method: 'GET',
-        headers: {
-            'x-apikey': VIRUSTOTAL_API_KEY
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.data.attributes.last_analysis_stats.malicious > 0) {
-                return { safe: false, data: data.data.attributes.last_analysis_stats };
-            }
-            return { safe: true };
-        })
-        .catch(error => {
-            console.error('Error checking VirusTotal:', error);
-            return { safe: true }; // Default to safe if error
-        });
-}
+//     return fetch(`${requestUrl}/${urlEncoded}`, {
+//         method: 'GET',
+//         headers: {
+//             'x-apikey': VIRUSTOTAL_API_KEY
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.data.attributes.last_analysis_stats.malicious > 0) {
+//                 return { safe: false, data: data.data.attributes.last_analysis_stats };
+//             }
+//             return { safe: true };
+//         })
+//         .catch(error => {
+//             console.error('Error checking VirusTotal:', error);
+//             return { safe: true }; // Default to safe if error
+//         });
+// }
 
 // Usage within the checkSafety function
-async function checkSafety(url) {
-    // Existing logic...
+// async function checkSafety(url) {
+//     // Existing logic...
 
-    // Check with VirusTotal
-    const virusTotalResult = await checkWithVirusTotal(url);
-    if (!virusTotalResult.safe) {
-        notifyUser('This site is flagged by VirusTotal!', 'unsafe');
-    }
+//     // Check with VirusTotal
+//     const virusTotalResult = await checkWithVirusTotal(url);
+//     if (!virusTotalResult.safe) {
+//         notifyUser('This site is flagged by VirusTotal!', 'unsafe');
+//     }
 
-    // Additional logic...
-}
+//     // Additional logic...
+// }
 
 
 

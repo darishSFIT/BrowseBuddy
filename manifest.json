@@ -10,7 +10,9 @@
         "scripting",
         "bookmarks",
         "tabs",
-        "tabGroups"
+        "tabGroups",
+        "webRequest",
+        "webRequestBlocking"
   ],
   "background": {
     "service_worker": "background.js"
@@ -19,22 +21,33 @@
     "default_popup": "popup.html",
     "default_icon": "icon.png"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
  
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js",
+      "js": ["background.js",
+            "content.js",
             "popup.js",
             "adblocker/adblock.js",
             "bookmark-organizer/bookmark-organizer.js",
             "productivity-tracker/productivity-tracker.js",
-            "safety-status/safety-badge.js",
-            "safety-status/safety-status.js",
             "screenshot/html2canvas.js",
             "screenshot/screenshot.js",
             "tab-manager/tab-manager.js",
-            "translate-summarize/popup.js",
-            "translate-summarize/background.js"]
+            "translate-summarizer/popup.js",
+            "translate-summarizer/background.js",
+            "BlacklistWebsite/background.js",
+            "BlacklistWebsite/popup.js",
+            "ColorPicker/script.js",
+            "ControlChromeTabs/event.js",
+            "List-The-Bookmarks/popup.js",
+            "NotePad/script.js",
+            "QR-Generator/script.js",
+            "URL-shortener/option.js",
+            "URL-shortener/popup.js"]
     }
   ],
   "web_accessible_resources": [
@@ -60,7 +73,9 @@
   "options_page": "popup.html",
 
   "host_permissions": [
-        "*://*/*"
+        "*://*/*",
+        "http://*/",
+        "https://*/"
     ],
     "commands": {
       "_execute_action": {
