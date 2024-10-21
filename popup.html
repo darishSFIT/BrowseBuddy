@@ -10,37 +10,44 @@
                 width: 800px;  /* max: 800px */
                 height: 600px; /* max: 600px */
             }
+
+            #screenshotArea {
+                position: relative;
+                width: 800px;
+                height: 600px;
+                overflow: hidden;
+                border: 1px solid #ccc;
+            }
+            .selection {
+                position: absolute;
+                border: 2px dashed rgba(0, 0, 255, 0.5);
+                background-color: rgba(0, 0, 255, 0.1);
+                pointer-events: none;
+            }
+            .hidden {
+                display: none;
+            }
         </style>
     </head>
-    <body class="bg-gray-100 p-6">
+    <body class="bg-gray-100 p-6 rounded-lg">
         <h1 class="text-3xl font-bold mb-6">BrowseBuddy Options</h1>
         <div>
             <ul class="space-y-4">
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Adblocker</h2>
-                    <p>Block unwanted ads and improve your browsing experience.</p>
-                    <a href="adblocker/adblock.html" class="text-blue-500 hover:underline">Manage Adblocker</a>
-                </li>
-
-                <!-- <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Safety Status</h2>
-                    <p>Check and submit safety scores for websites.</p>
-                    <a href="safety-status/safety-status.html" class="text-blue-500 hover:underline">Go to Safety Status</a>
-                </li> -->
 
                 <li class="bg-white p-4 rounded shadow">
                     <h2 class="text-xl font-semibold">Screenshot and Annotation</h2>
                     <p>Capture, annotate, and share screenshots of web pages.</p>
-                    <div id="screenshotContainer" class="mt-4"></div>
-                    <a href="screenshot/screenshot.html" class="text-blue-500 hover:underline">Advanced Screenshot options</a>
+                    <div id="screenshotContainer" class="mt-4"></div> <div id="screenshotArea" class="hidden mt-4"></div>
+                    <!-- <a href="screenshot/screenshot.html" class="text-blue-500 hover:underline">Advanced Screenshot options</a> -->
                     <button id="screenshotBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2">Take Screenshot</button>
-                    <button id="advancedScreenshotBtn" href="screenshot/screenshot.html" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2">Advanced Screenshot</button>
+                    <button id="advancedScreenshotBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">Advanced Screenshot</button>
+                    <button id="stop-ss" href="screenshot/screenshot.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-2">Stop Snip</button>
                 </li>
 
                 <li class="bg-white p-4 rounded shadow">
                     <h2 class="text-xl font-semibold">Tab Manager</h2>
                     <p>Manage your tabs with ease.</p>
-                    <a href="tab-manager/tab-manager.html" class="text-blue-500 hover:underline">Go to Tab Manager</a>
+                    <a href="see-all-tabs/index.html" class="text-blue-500 hover:underline">Go to Tab Manager</a>
                 </li>
 
                 <li class="bg-white p-4 rounded shadow">
@@ -54,41 +61,11 @@
                     <p>Translate or summarize the contents of the page.</p>
                     <a href="translate-summarizer/popup.html" class="text-blue-500 hover:underline">Translate or Summarize text</a>
                 </li>
-<!-- 
+                
                 <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Summarizer</h2>
-                    <p>Summarize the content of the page.</p>
-                    <a href="summarizer.html" class="text-blue-500 hover:underline">Summarize content</a>
-                </li> -->
-
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Productivity Tracker</h2>
-                    <p>Check and submit safety scores for websites.</p>
-                    <a href="productivity-tracker/productivity-tracker.html" class="text-blue-500 hover:underline">Go to Productivity Tracker</a>
-                </li>
-
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Blacklist Website</h2>
-                    <p>Blacklist unsafe websites</p>
-                    <a href="BlacklistWebsite/popup.html" class="text-blue-500 hover:underline">Go to Blacklist</a>
-                </li>
-
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Color Picker</h2>
-                    <p>Pick color of elements</p>
-                    <a href="ColorPicker/index.html" class="text-blue-500 hover:underline">Pick Color</a>
-                </li>
-
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">Control Chrome Tabs</h2>
-                    <p>Control tabs in Chrome browser</p>
-                    <a href="ControlChromeTabs/event.js" class="text-blue-500 hover:underline">Control Tabs</a>
-                </li>
-
-                <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">List all bookmarks</h2>
-                    <p>List all the bookmarks saved in Chrome</p>
-                    <a href="List-The-Bookmarks/popup.html" class="text-blue-500 hover:underline">View Bokkmarks</a>
+                    <h2 class="text-xl font-semibold">URL Shortner</h2>
+                    <p>Shorten Long URLs into smaller links</p>
+                    <a href="URL-shortener/popup.html" class="text-blue-500 hover:underline">Short URLs</a>
                 </li>
 
                 <li class="bg-white p-4 rounded shadow">
@@ -104,22 +81,61 @@
                 </li>
 
                 <li class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl font-semibold">URL Shortner</h2>
-                    <p>Shorten Long URLs into smaller links</p>
-                    <a href="URL-shortener/popup.html" class="text-blue-500 hover:underline">Short URLs</a>
+                    <h2 class="text-xl font-semibold">Adblocker</h2>
+                    <p>Block unwanted ads and improve your browsing experience.</p>
+                    <a href="adblocker/adblock.html" class="text-blue-500 hover:underline">Manage Adblocker</a>
                 </li>
 
+                <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Blacklist Website</h2>
+                    <p>Blacklist unsafe websites</p>
+                    <a href="BlacklistWebsite/popup.html" class="text-blue-500 hover:underline">Go to Blacklist</a>
+                </li>
 
+                <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Productivity Tracker</h2>
+                    <p>Check and submit safety scores for websites.</p>
+                    <a href="productivity-tracker/productivity-tracker.html" class="text-blue-500 hover:underline">Go to Productivity Tracker</a>
+                </li>
                 
+                <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Color Picker</h2>
+                    <p>Pick color of elements</p>
+                    <a href="ColorPicker/index.html" class="text-blue-500 hover:underline">Pick Color</a>
+                </li>
 
                 <li class="bg-white p-4 rounded shadow">
                     <h2 class="text-xl font-semibold">ParkBuddy</h2>
                     <p>View and book parking slots.</p>
                     <a href="https://darishsfit.github.io/parkbuddy.github.io/" target="_blank" class="text-blue-500 hover:underline">Use ParkBuddy!</a>
                 </li>
-                <!-- Add more features here -->
+
+                <!-- <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Safety Status</h2>
+                    <p>Check and submit safety scores for websites.</p>
+                    <a href="safety-status/safety-status.html" class="text-blue-500 hover:underline">Go to Safety Status</a>
+                </li> -->
+
+                <!--<li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Summarizer</h2>
+                    <p>Summarize the content of the page.</p>
+                    <a href="summarizer.html" class="text-blue-500 hover:underline">Summarize content</a>
+                </li> -->
+
+                <!-- <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">Control Chrome Tabs</h2>
+                    <p>Control tabs in Chrome browser</p>
+                    <a href="ControlChromeTabs/event.js" class="text-blue-500 hover:underline">Control Tabs</a>
+                </li> -->
+
+                <!-- <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">List all bookmarks</h2>
+                    <p>List all the bookmarks saved in Chrome</p>
+                    <a href="List-The-Bookmarks/popup.html" class="text-blue-500 hover:underline">View Bokkmarks</a>
+                </li> -->
             </ul>
         </div>
         <script src="popup.js"></script>
+        <script src="./screenshot/ss/ss.js"></script>
     </body>
 </html>

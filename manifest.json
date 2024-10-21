@@ -29,21 +29,17 @@
     {
       "matches": ["<all_urls>"],
       "js": ["background.js",
-            "content.js",
             "popup.js",
             "adblocker/adblock.js",
             "bookmark-organizer/bookmark-organizer.js",
             "productivity-tracker/productivity-tracker.js",
             "screenshot/html2canvas.js",
             "screenshot/screenshot.js",
-            "tab-manager/tab-manager.js",
             "translate-summarizer/popup.js",
             "translate-summarizer/background.js",
             "BlacklistWebsite/background.js",
             "BlacklistWebsite/popup.js",
-            "ColorPicker/script.js",
-            "ControlChromeTabs/event.js",
-            "List-The-Bookmarks/popup.js",
+            "ColorPicker/script.js",            
             "NotePad/script.js",
             "QR-Generator/script.js",
             "URL-shortener/option.js",
@@ -53,19 +49,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-          "popup.html", 
-          "bookmark-organizer.html",
-          "safety-status.html",
-          "adblock.html", 
-          "translator.html",
-          "summarizer.html",
-          "productivity-tracker.html",
-          "screenshot.html",
-          "submit-score.html",           
-          "index.html", 
-          "translate/popup.html",
-          "safety-status.js", 
-          "content.js", 
+          "popup.html",  
           "background.js"],
       "matches": ["<all_urls>"]
     }

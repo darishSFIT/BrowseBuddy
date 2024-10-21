@@ -1,9 +1,54 @@
 <!DOCTYPE html>
 <html>
+<head></head>
+    <style>
+        html{
+            width:400px;
+            height: 400px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
 
+        textarea {
+            width: 90%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            resize: none; /* Prevent resizing */
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
 <body style="min-width:250px;min-height:200px">
     <textarea id="id_memo" cols="30" rows="10"></textarea><br>
-    <input type="button" id="id_save" value="Save to localStorage"><br>
+    <input type="button" id="id_save" value="Save"><br>
     <input type="button" id="id_savefile" value="Save to File"><br>
     <input type="file" id="id_openfile">
 
