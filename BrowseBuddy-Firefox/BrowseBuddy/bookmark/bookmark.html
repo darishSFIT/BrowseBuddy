@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Organizer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html, body {
+            width: 440px;
+            height: 600px;
+            overflow-y: auto;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* Custom scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .custom-shadow {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/jquery-3.7.1.min.js"></script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="back-button">
+        <a href="../popup.html" class="back-link">
+          <i class="fas fa-arrow-left mb-5 text-2xl"></i>
+        </a>
+      </div>
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-4 text-center text-gray-800">Bookmark Organizer</h1>
+        <form id="addBookmarkForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="bookmarkName">
+                    Bookmark Name
+                </label>
+                <input id="bookmarkName" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter bookmark name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="bookmarkUrl">
+                    Bookmark URL
+                </label>
+                <input id="bookmarkUrl" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter bookmark URL">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="bookmarkGroup">
+                    Group/Category
+                </label>
+                <input id="bookmarkGroup" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter group or category">
+            </div>
+            <div class="flex items-center justify-between">
+                <button id="addBookmark" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200" type="button">
+                    Add Bookmark
+                </button>
+                <button id="displayBookmarks" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200" type="button">
+                    Refresh Bookmarks
+                </button>
+            </div>
+        </form>
+        <div id="bookmarkContainer" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Your Bookmarks</h2>
+            <div id="content"></div>
+            <div id="bookmarkList" class="space-y-4"></div>
+        </div>
+    </div>
+    
+    <div id="editModal" class="modal">
+        <div class="modal-content bg-white shadow-md rounded px-8 pt-6 pb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Edit Bookmark</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="editName">
+                    Bookmark Name
+                </label>
+                <input id="editName" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Bookmark Name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="editUrl">
+                    Bookmark URL
+                </label>
+                <input id="editUrl" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Bookmark URL">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="editGroup">
+                    Group/Category
+                </label>
+                <input id="editGroup" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Group/Category">
+            </div>
+            <div class="flex items-center justify-between">
+                <button id="saveEdit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">Save</button>
+                <button id="cancelEdit" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="bookmark.js" defer></script>
+</body>
+</html>

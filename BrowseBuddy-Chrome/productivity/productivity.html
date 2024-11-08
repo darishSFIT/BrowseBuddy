@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            width: 450px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        .header-bg {
+            background-color: #2196F3;
+        }
+        .chart-container {
+            position: relative;
+            height: 450px; /* Increased height to accommodate legend */
+            width: 300px;
+            margin: auto;
+        }
+        .website-item {
+            background-color: #1e2124;
+        }
+        #activityChart {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: auto;
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="back-button">
+        <a href="../popup.html" class="back-link">
+          <i class="fas fa-arrow-left mb-5 text-2xl"></i>
+        </a>
+      </div>
+    <div class="header-bg text-white p-4 rounded-t-lg">
+        <h1 class="text-2xl font-bold">Productivity Tracker</h1>
+        <p class="text-sm">Monitor your online activity</p>
+    </div>
+    
+    <div class="bg-white rounded-b-lg shadow-md p-4 mb-4">
+        <div class="chart-container">
+            <svg id="activityChart"></svg>
+        </div>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-lg font-semibold mb-2">Top Visited Websites</h2>
+        <ul id="topWebsites" class="space-y-2"></ul>
+    </div>
+</body>
+<script src="d3.min.js"></script>
+<script src="productivity.js"></script>
+</html>

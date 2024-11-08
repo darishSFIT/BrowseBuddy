@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="shorturl.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>URL-Shortener</title>
+    <style>
+        html {
+            width: 450px;
+        }
+        body {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-6 rounded-lg">
+    <div class="back-button mb-4">
+        <a href="../popup.html" class="text-black text-lg">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+    <div class="card bg-white shadow-lg rounded-lg p-4">
+        <div class="card-header">
+            <div class="toast toast-error d-hide text-xl font-semibold">
+                Please enter valid URL
+            </div>
+            <h2 class="text-xl font-semibold">URL Shortener</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <input class="form-input border border-gray-300 rounded-lg p-2 w-full" type="text" id="myurl" placeholder="Enter your URL here">
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="loading d-hide"></div>
+            <button class="btn btn-primary bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" id="shortURL">Generate short URL</button>
+            <div class="toast toast-success d-hide text-xl font-semibold py-1"></div>
+        </div>
+    </div>
+</body>
+
+</html>

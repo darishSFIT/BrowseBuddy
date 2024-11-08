@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <title>BrowseBuddy Options</title>
+        <style>
+            html{
+                width: 500px;  /* max: 800px */
+                height: 600px; /* max: 600px */
+            }
+
+            #screenshotArea {
+                position: relative;
+                width: 800px;
+                height: 600px;
+                overflow: hidden;
+                border: 1px solid #ccc;
+            }
+            .selection {
+                position: absolute;
+                border: 2px dashed rgba(0, 0, 255, 0.5);
+                background-color: rgba(0, 0, 255, 0.1);
+                pointer-events: none;
+            }
+            .hidden {
+                display: none;
+            }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f4f5;
+            }
+            #popup-container {
+                width: 320px;
+                max-width: 100%;
+                margin: auto;
+                padding: 1.5rem;
+                background-color: #ffffff;
+                border-radius: 0.75rem;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e2e8f0;
+            }
+            #report {
+                max-height: 180px;
+                overflow-y: auto;
+                background-color: #f1f5f9;
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                border: 1px solid #d1d5db;
+                margin-top: 1rem;
+            }
+            iframe {
+                width: 100%;
+                height: 800px; /* Adjust height as needed */
+                border: none;
+                border-radius: 0.5rem;
+                margin-top: 1rem;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100 p-6 rounded-lg">
+        <h1 class="text-3xl font-bold mb-6 flex justify-center items-center">Browse <img src="icon.png" width="32" height="32" alt="Options"> Buddy</h1>
+        <div>
+            <ul class="space-y-4">
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Productivity Tracker</h2>
+                    <p>Check and submit safety scores for websites.</p>
+                    <a href="productivity/productivity.html" class="text-blue-500 hover:underline">Go to Productivity Tracker</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Screenshot</h2>
+                    <p>Capture and share screenshots of web pages.</p>
+                    <div id="screenshotContainer" class="mt-4"></div> 
+                    <!-- <div id="screenshotArea" class="hidden mt-4"></div> -->
+                    <a href="screenshooter/screenshooter.html" class="text-blue-500 hover:underline">Screenshot a particular area</a>
+                    <button id="screenshotBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-1 rounded mt-2">Take Screenshot</button>
+                    <!-- <button id="advancedScreenshotBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">Advanced Screenshot</button> -->
+                    <button id="stop-ss" class="bg-red-500 hover:bg-red-300 text-white font-bold py-1 px-1 rounded hidden ">Hide</button>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Tab Manager</h2>
+                    <p>Manage your tabs with ease.</p>
+                    <a href="tabmanager/tabmanager.html" class="text-blue-500 hover:underline">Go to Tab Manager</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Bookmark Organizer</h2>
+                    <p>Organize your bookmarks with tags and notes.</p>
+                    <a href="bookmark/bookmark.html" class="text-blue-500 hover:underline">Bookmark Organizer</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Translate and Explain Content</h2>
+                    <p>Translate, expain or summarize the contents of the page.</p>
+                    <a href="translate-summarizer/translate-summarizer.html" class="text-blue-500 hover:underline">Translate or Explain/Summarize text</a>
+                </li>
+                
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">URL Shortner</h2>
+                    <p>Shorten Long URLs into smaller links</p>
+                    <a href="shorturl/shorturl.html" class="text-blue-500 hover:underline">Short URLs</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Link to QR</h2>
+                    <p>Convert a link into a QR code</p>
+                    <a href="qr/qr.html" class="text-blue-500 hover:underline">View URL QR</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Notepad</h2>
+                    <p>Save, edit notes on the go!</p>
+                    <a href="notepad/notepad.html" class="text-blue-500 hover:underline">Open Notepad</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">Adblocker</h2>
+                    <p>Block unwanted ads and improve your browsing experience.</p>
+                    <a href="adblocker/adblocker.html" class="text-blue-500 hover:underline">Manage Adblocker</a>
+                </li>
+
+                <li class="bg-white p-4 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">ParkBuddy (App Preview)</h2>
+                    <p>View and book parking slots.</p>
+                    <a href="#" id="openParkBuddy" class="text-blue-500 hover:underline">Use ParkBuddy!</a>&nbsp;
+                    <button id="stop-pb" class="bg-red-500 hover:bg-red-600 text-white font-bold rounded px-1 hidden">Stop</button>
+                </li>
+                <iframe id="contentFrame" class="hidden" src=""></iframe>
+            </ul>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>

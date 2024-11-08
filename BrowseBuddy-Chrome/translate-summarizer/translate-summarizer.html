@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BrowseBuddy Translate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    html{
+      width: 450px;
+    }
+    body {
+      width: 400px;
+      height: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      flex: 1;
+      padding: 8px;
+      cursor: pointer;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #1557b0;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    #result {
+      white-space: pre-wrap;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      max-height: 500px;
+      overflow-y: auto;
+      background-color: #f9f9f9; /* Light gray background */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+      font-size: 14px; /* Adjust font size for readability */
+      color: #333; /* Darker text color for contrast */
+    }
+    .loading {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .option-group {
+      flex: 1;
+    }
+   
+  </style>
+  
+</head>
+<body>
+  <div class="back-button" style="color: black; margin-bottom: 10px;" >
+    <a href="../popup.html" class="back-link">
+      <i class="fas fa-arrow-left mb-5" style="font-size: 20px; color: black;"></i>
+    </a>
+  </div>
+  <div style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 18px;">Translate & Explain/Summarize</div>
+  <div style="font-size: 12px; font-weight: bold; text-align: center; margin-bottom: 18px;">Select text content from webpage to proceed!</div>
+  
+  <div class="options">
+    <div class="option-group">
+      <label for="translateLang">Translate to:</label>
+      <select id="translateLang">
+        <option value="English">English</option>
+        <option value="Spanish">Spanish</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Italian">Italian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Korean">Korean</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Russian">Russian</option>
+        <option value="Arabic">Arabic</option>
+      </select>
+    </div>
+    <div class="option-group">
+      <label for="summaryLength">Content Options:</label>
+      <select id="summaryLength">
+        <option value="brief">Summarize</option>
+        <option value="moderate">Explain</option>
+        <option value="detailed">Detailed Explaination</option>
+      </select>
+    </div>
+  </div>
+  <div class="buttons">
+    <button id="translateBtn">Translate</button>
+    <button id="summarizeBtn">Summarize/Explain</button>
+    
+  </div>
+  <div id="loading" class="loading" style="display: none;">Processing...</div>
+  <div id="result"></div>
+  <script src="translate-summarizer.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+    <style>
+        html{
+            width:400px;
+            height: 600px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 10px;
+            font-size: 18px;
+
+        }
+
+        textarea {
+            width: 520px;
+            height: 400px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            resize: none; /* Prevent resizing */
+            font-size: 24px;
+            font-family: inherit;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="min-width:250px;min-height:200px">
+    <div class="back-button">
+        <a href="../popup.html" class="back-link" style="font-size: 20px;">
+          <i class="fas fa-arrow-left mb-5 text-2xl"></i>
+        </a>
+      </div>
+    <textarea id="id_memo" cols="30" rows="10"></textarea><br>
+    <input type="button" id="id_save" value="Save">
+    <input type="button" id="id_savefile" value="Save to File">
+    <input class="border border-gray-300 rounded-lg p-2 bg-white text-gray-700" type="file" id="id_openfile">
+
+    <script src="notepad.js"></script>
+
+</body>
+
+</html>

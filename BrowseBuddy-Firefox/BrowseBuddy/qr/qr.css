@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  width: 500px;
+  height: 600px;
+  background-color: #fff;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #ffffff;
+  color: #fff;
+  padding: 5px;
+  display: flex;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .head {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+} */
+
+.head .title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.head .subtitle {
+  letter-spacing: 1.3rem;
+  padding-left: 1rem;
+}
+
+.qr {
+  margin-bottom: 2rem;
+}
+
+.qr img {
+  width: 24rem;
+}
+
+.input {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.65rem 2rem;
+  background:#a0d3ff;
+  border-radius:5px;
+}
+.input .label {
+  font-size: 0.75rem;
+  font-size: 14px;
+  color: #333333;
+}
+
+.input .text {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #333333;
+  outline: none;
+}
+
+::placeholder {
+  color: #3b3b3b;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons .generate,
+.buttons .download {
+  background-color: #2497ff;
+  color: #fff;
+  border: none;
+  width: 48%;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+
+.back-button{
+  display: flex;
+  align-items: start;
+}
